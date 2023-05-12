@@ -1,3 +1,4 @@
+import 'package:book_app/app/ui/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
@@ -30,8 +31,7 @@ class SearchPage extends GetView<SearchController> {
           return await controller.getAutocompleteList(pattern);
         },
         onSuggestionSelected: (suggestion) {
-          // controller.typeAheadController.text = suggestion.volumeInfo!.title!;
-          Get.toNamed('');
+          Get.toNamed(AppRoutes.BOOK_DETAIL_PAGE, arguments: suggestion);
         },
         suggestionsBoxDecoration: SuggestionsBoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
