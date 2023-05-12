@@ -1,5 +1,5 @@
-import 'package:book_app/app/ui/modules/home_binding.dart';
-import 'package:book_app/app/ui/modules/home_page.dart';
+import 'package:book_app/app/ui/modules/home/home_binding.dart';
+import 'package:book_app/app/ui/modules/home/home_page.dart';
 
 import 'package:get/get.dart';
 
