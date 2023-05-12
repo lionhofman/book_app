@@ -1,4 +1,4 @@
-
+import 'package:book_app/app/ui/modules/search/search_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -10,7 +10,9 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(''),
       ),
-      body: Container(),
+      body: Container(
+        child: const SearchPage(),
+      ),
     );
   }
 }

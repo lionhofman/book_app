@@ -1,21 +1,22 @@
 import 'package:book_app/app/core/network/network_properties.dart';
+import 'package:book_app/app/data/models/book_response.dart';
 import 'package:book_app/app/domain/entities/book.dart';
 import 'package:book_app/app/foundation/errors/failure.dart';
 import 'package:dio/dio.dart';
 
 abstract class BookRemoteDataSource {
-  Future<List<Book>> getAutoCompleteList({
+  Future<Book> getAutoCompleteList({
     required String keyword,
   });
 }
 
 class BookRemoteDataSourceImpl extends BookRemoteDataSource {
-  final Dio _dio;
+  final Dio _dio = Dio();
 
-  BookRemoteDataSourceImpl(this._dio);
+  BookRemoteDataSourceImpl();
 
   @override
-  Future<List<Book>> getAutoCompleteList({required String keyword}) async {
+  Future<Book> getAutoCompleteList({required String keyword}) async {
     try {
       Response response = await _dio.get(
         NetworkProperties.BASE_URL,
@@ -36,11 +37,11 @@ class BookRemoteDataSourceImpl extends BookRemoteDataSource {
     }
   }
 
-  List<Book> handleAutocompleteRequest(Response response) {
+  Book handleAutocompleteRequest(Response response) {
     if (response.statusCode == 200) {
-      List<Book> _autocompleteList = <Book>[];
+      Book autocompleteList = BookResponse.fromJson(response.data);
 
-      return _autocompleteList;
+      return autocompleteList;
     } else {
       throw UnimplementedError();
     }

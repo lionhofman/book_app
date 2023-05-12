@@ -13,10 +13,10 @@ class BookRepositoryImpl implements BookRepository {
   );
 
   @override
-  Future<Either<Failure, List<Book>>> getAutoCompleteList(
+  Future<Either<Failure, Book>> getAutoCompleteList(
       {required String keyword}) async {
     try {
-      List<Book> autocompleteList =
+      Book autocompleteList =
           await _bookRemoteDataSource.getAutoCompleteList(keyword: keyword);
       return Right(autocompleteList);
     } catch (e) {

@@ -9,16 +9,16 @@ import 'package:get/get.dart';
 class SearchBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<BookRemoteDataSource>(
-        () => BookRemoteDataSourceImpl(Get.find<Dio>()));
+    Get.lazyPut<BookRemoteDataSource>(() => BookRemoteDataSourceImpl());
     Get.lazyPut<BookRepository>(() => BookRepositoryImpl(
           Get.find<BookRemoteDataSource>(),
         ));
     Get.lazyPut<GetAutocompleteListUseCase>(
         () => GetAutocompleteListUseCase(Get.find<BookRepository>()));
-
-    Get.lazyPut<SearchController>(() => SearchController(
-          Get.find<GetAutocompleteListUseCase>(),
-        ));
+    Get.put<SearchController>(
+      SearchController(
+        Get.find<GetAutocompleteListUseCase>(),
+      ),
+    );
   }
 }

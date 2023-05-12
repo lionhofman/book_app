@@ -17,7 +17,7 @@ class VolumeInfoResponse extends VolumeInfo {
     int? pageCount,
     String? printType,
     List<String>? categories,
-    double? averageRating,
+    int? averageRating,
     int? ratingsCount,
     String? maturityRating,
     bool? allowAnonLogging,
@@ -54,7 +54,8 @@ class VolumeInfoResponse extends VolumeInfo {
   factory VolumeInfoResponse.fromJson(Map<String, dynamic> json) {
     return VolumeInfoResponse(
       title: json['title'],
-      authors: List<String>.from(json['authors']),
+      authors:
+          json['authors'] != null ? List<String>.from(json['authors']) : null,
       publisher: json['publisher'],
       publishedDate: json['publishedDate'],
       description: json['description'],
@@ -63,7 +64,9 @@ class VolumeInfoResponse extends VolumeInfo {
           : null,
       pageCount: json['pageCount'],
       printType: json['printType'],
-      categories: List<String>.from(json['categories']),
+      categories: json['categories'] != null
+          ? List<String>.from(json['categories'])
+          : null,
       averageRating: json['averageRating'],
       ratingsCount: json['ratingsCount'],
       maturityRating: json['maturityRating'],

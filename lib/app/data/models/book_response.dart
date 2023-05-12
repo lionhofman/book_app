@@ -17,9 +17,11 @@ class BookResponse extends Book {
     return BookResponse(
       kind: json['kind'],
       totalItems: json['totalItems'],
-      items: List<BookItem>.from(
-        json['items'].map((item) => BookItemResponse.fromJson(item)),
-      ),
+      items: json['items'] != null
+          ? List<BookItem>.from(
+              json['items'].map((item) => BookItemResponse.fromJson(item)),
+            )
+          : null,
     );
   }
 }

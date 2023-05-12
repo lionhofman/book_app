@@ -8,7 +8,7 @@ class GetAutocompleteListUseCase {
 
   GetAutocompleteListUseCase(this._bookRepository);
 
-  Future<Either<Failure, List<Book>>> call({required String keyword}) async {
+  Future<Either<Failure, Book>> call({required String keyword}) async {
     return await _bookRepository.getAutoCompleteList(keyword: keyword);
   }
 }

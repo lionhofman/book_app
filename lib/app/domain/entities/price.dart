@@ -1,5 +1,5 @@
 class Price {
-  final double? amount;
+  final String? amount;
   final String? currencyCode;
 
   Price({

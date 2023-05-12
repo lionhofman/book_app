@@ -35,10 +35,18 @@ class BookItemResponse extends BookItem {
       id: json['id'],
       etag: json['etag'],
       selfLink: json['selfLink'],
-      volumeInfo: VolumeInfoResponse.fromJson(json['volumeInfo']),
-      saleInfo: SaleInfoResponse.fromJson(json['saleInfo']),
-      accessInfo: AccessInfoResponse.fromJson(json['accessInfo']),
-      searchInfo: SearchInfoResponse.fromJson(json['searchInfo']),
+      volumeInfo: json['volumeInfo'] != null
+          ? VolumeInfoResponse.fromJson(json['volumeInfo'])
+          : null,
+      saleInfo: json['saleInfo'] != null
+          ? SaleInfoResponse.fromJson(json['saleInfo'])
+          : null,
+      accessInfo: json['accessInfo'] != null
+          ? AccessInfoResponse.fromJson(json['accessInfo'])
+          : null,
+      searchInfo: json['searchInfo'] != null
+          ? SearchInfoResponse.fromJson(json['searchInfo'])
+          : null,
     );
   }
 }
