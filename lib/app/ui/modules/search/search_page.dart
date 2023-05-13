@@ -1,3 +1,4 @@
+import 'package:book_app/app/core/validation/custom_validation.dart';
 import 'package:book_app/app/ui/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -63,16 +64,16 @@ class SearchPage extends GetView<SearchController> {
               title: Text(suggestion.volumeInfo!.title!),
               subtitle: Text(suggestion.saleInfo != null &&
                       suggestion.saleInfo!.retailPrice != null
-                  ? controller.formatPrice(
+                  ? CustomValidation.formatPrice(
                       price: suggestion.saleInfo!.retailPrice!.amount!)
                   : ""),
               trailing: Visibility(
                 visible: suggestion.saleInfo != null &&
                     suggestion.saleInfo!.buyLink != null,
                 child: ElevatedButton(
-                  onPressed: () => controller.validateLaunchURL(
+                  onPressed: () => CustomValidation.validateLaunchURL(
                       url: suggestion.saleInfo!.buyLink),
-                  child: const Text('Comprar'),
+                  child: const Text('Buy now'),
                 ),
               ));
         },
