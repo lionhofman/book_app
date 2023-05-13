@@ -1,15 +1,35 @@
+import 'package:book_app/app/data/database/hive/hive_db_service.dart';
 import 'package:book_app/app/domain/entities/book_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class BookDetailPage extends StatelessWidget {
-  final BookItem? book = Get.arguments;
-  // final String argument = Get.arguments;
-
-  BookDetailPage({
+class BookDetailPage extends StatefulWidget {
+  const BookDetailPage({
     super.key,
   });
+
+  @override
+  State<BookDetailPage> createState() => _BookDetailPageState();
+}
+
+class _BookDetailPageState extends State<BookDetailPage> {
+  final BookItem? book = Get.arguments;
+  bool _isFavorited = false;
+
+  @override
+  void initState() {
+    asyncInit();
+    super.initState();
+  }
+
+  Future<void> asyncInit() async {
+    bool favorited =
+        await HiveDbService.instance.isFavoritedBookItem(bookItem: book!);
+    setState(() {
+      _isFavorited = favorited;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +90,13 @@ class BookDetailPage extends StatelessWidget {
                   style: TextStyle(fontSize: 18),
                 ),
                 Divider(),
+                IconButton(
+                  icon: Icon(
+                    _isFavorited ? Icons.favorite : Icons.favorite_border,
+                    color: _isFavorited ? Colors.red : null,
+                  ),
+                  onPressed: _toggleFavorite,
+                ),
                 // Text(
                 //   'Price: ${book!.saleInfo!.retailPrice!.amount}',
                 //   style: TextStyle(fontSize: 18),
@@ -87,7 +114,15 @@ class BookDetailPage extends StatelessWidget {
     );
   }
 
-  // void _launchURL(String _url) async => await canLaunch(_url)
-  //     ? await launch(_url)
-  //     : throw 'Could not launch $_url';
+  void _toggleFavorite() {
+    setState(() {
+      _isFavorited = !_isFavorited;
+    });
+
+    if (_isFavorited) {
+      HiveDbService.instance.storeBookItems(bookItem: book!);
+    } else {
+      HiveDbService.instance.removeBookItem(bookItem: book!);
+    }
+  }
 }
