@@ -11,13 +11,13 @@ class SearchPage extends GetView<SearchController> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(4.0),
       child: TypeAheadField(
         textFieldConfiguration: TextFieldConfiguration(
           autofocus: true,
           style: DefaultTextStyle.of(context)
               .style
-              .copyWith(fontStyle: FontStyle.italic),
+              .copyWith(fontStyle: FontStyle.italic, color: Colors.black),
           controller: controller.typeAheadController,
           decoration: const InputDecoration(
               prefixIcon: Icon(Icons.search),
