@@ -42,7 +42,7 @@ class HiveDbService {
     var keyToRemove;
 
     for (var key in box.keys) {
-      if (box.get(key) == bookItem) {
+      if (box.get(key)!.id == bookItem.id) {
         keyToRemove = key;
         break;
       }

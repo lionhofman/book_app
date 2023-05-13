@@ -34,7 +34,8 @@ class _BookDetailPageState extends State<BookDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       appBar: AppBar(
         title: Text(book!.volumeInfo!.title!),
       ),
@@ -50,8 +51,8 @@ class _BookDetailPageState extends State<BookDetailPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 ListTile(
-                  leading: Image.network(
-                      book!.volumeInfo!.imageLinks!.smallThumbnail!),
+                  leading:
+                      Image.network(book!.volumeInfo!.imageLinks!.thumbnail!),
                   title: Text(
                     book!.volumeInfo!.title!,
                     style: const TextStyle(
@@ -116,14 +117,13 @@ class _BookDetailPageState extends State<BookDetailPage> {
           ),
         ),
       ),
-    );
+    ));
   }
 
   void _toggleFavorite() {
     setState(() {
       _isFavorited = !_isFavorited;
     });
-
     if (_isFavorited) {
       HiveDbService.instance.storeBookItems(bookItem: book!);
     } else {
