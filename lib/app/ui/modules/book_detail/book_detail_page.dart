@@ -52,25 +52,28 @@ class _BookDetailPageState extends State<BookDetailPage> {
                   style: const TextStyle(
                       fontSize: 28, fontWeight: FontWeight.bold),
                 ),
-                // ListView.builder(
-                //   itemCount: book!.volumeInfo != null &&
-                //           book!.volumeInfo!.authors != null
-                //       ? book!.volumeInfo!.authors!.length
-                //       : 0,
-                //   itemBuilder: (context, index) {
-                //     return ListTile(
-                //       title: Text(
-                //         'by ${book!.volumeInfo!.authors![index]}',
-                //         style: const TextStyle(
-                //             fontSize: 18, fontStyle: FontStyle.italic),
-                //       ),
-                //     );
-                //   },
-                // ),
-                // Text(
-                //   'by ${book!.author}',
-                //   style: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
-                // ),
+                Container(
+                  height: 50,
+                  child: ListView.separated(
+                    physics: BouncingScrollPhysics(),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 8),
+                    itemCount: book!.volumeInfo != null &&
+                            book!.volumeInfo!.authors != null
+                        ? book!.volumeInfo!.authors!.length
+                        : 0,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(
+                          'by ${book!.volumeInfo!.authors![index]}',
+                          style: const TextStyle(
+                              fontSize: 14, fontStyle: FontStyle.italic),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+
                 Divider(),
                 Text(
                   book!.volumeInfo!.description!,

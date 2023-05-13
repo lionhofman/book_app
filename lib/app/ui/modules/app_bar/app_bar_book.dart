@@ -1,3 +1,4 @@
+import 'package:book_app/app/ui/app_routes.dart';
 import 'package:book_app/app/ui/modules/search/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,9 @@ class AppBarBook extends StatelessWidget implements PreferredSizeWidget {
             color: Colors.blue,
           ),
           onPressed: () {
-            Get.toNamed('/favoritesPage');
+            Get.toNamed(
+              AppRoutes.FAVORITE_OFFLINE_PAGE,
+            );
           },
         ),
       ],
