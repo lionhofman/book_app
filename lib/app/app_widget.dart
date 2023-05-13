@@ -1,4 +1,5 @@
 import 'package:book_app/app/app_binding.dart';
+import 'package:book_app/app/core/multilanguage/messages_delegate.dart';
 import 'package:book_app/app/ui/app_pages.dart';
 import 'package:book_app/app/ui/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -26,11 +27,12 @@ class AppWidget extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
+        MessagesDelegate(),
       ],
       supportedLocales: const [
-        Locale('pt', 'BR'),
+        Locale('en', 'US'), // English
+        Locale('pt', 'BR'), // portugues
       ],
-      locale: const Locale('pt', 'BR'),
       initialBinding: ApplicationBinding(),
     );
   }

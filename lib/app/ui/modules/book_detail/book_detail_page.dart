@@ -1,3 +1,4 @@
+import 'package:book_app/app/core/multilanguage/messages.dart';
 import 'package:book_app/app/core/validation/custom_validation.dart';
 import 'package:book_app/app/data/database/hive/hive_db_service.dart';
 import 'package:book_app/app/domain/entities/book_item.dart';
@@ -59,7 +60,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                         fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
-                    'by ${book!.volumeInfo!.authors!.join(', ')}',
+                    '${Messages.of(context).by}: ${book!.volumeInfo!.authors!.join(', ')}',
                     style: const TextStyle(
                         fontSize: 16, fontStyle: FontStyle.italic),
                   ),
@@ -77,15 +78,15 @@ class _BookDetailPageState extends State<BookDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Publisher: ${book!.volumeInfo!.publisher!}',
+                        '${Messages.of(context).publisher}: ${book!.volumeInfo!.publisher!}',
                         style: const TextStyle(fontSize: 16),
                       ),
                       Text(
-                        'Published Date: ${book!.volumeInfo!.publishedDate}',
+                        '${Messages.of(context).publishedDate}: ${book!.volumeInfo!.publishedDate}',
                         style: const TextStyle(fontSize: 16),
                       ),
                       Text(
-                        'Page Count: ${book!.volumeInfo!.pageCount}',
+                        '${Messages.of(context).pageCount}: ${book!.volumeInfo!.pageCount}',
                         style: const TextStyle(fontSize: 16),
                       ),
                     ],
@@ -107,7 +108,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                       child: ElevatedButton(
                         onPressed: () => CustomValidation.validateLaunchURL(
                             url: book!.saleInfo!.buyLink),
-                        child: const Text('Buy this book'),
+                        child: Text(Messages.of(context).buyThisBook),
                       ),
                     ),
                   ],

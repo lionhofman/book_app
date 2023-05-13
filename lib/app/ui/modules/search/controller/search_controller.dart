@@ -21,7 +21,6 @@ class SearchController extends GetxController {
   );
 
   Future<List<BookItem>> getAutocompleteList(String text) async {
-    await Future.delayed(const Duration(seconds: 1));
     final result = await _getAutocompleteListUseCase.call(keyword: text);
     result.fold(
       (l) => null,

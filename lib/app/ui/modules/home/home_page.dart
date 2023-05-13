@@ -1,18 +1,17 @@
+import 'package:book_app/app/core/multilanguage/messages.dart';
 import 'package:book_app/app/ui/modules/app_bar/app_bar_book.dart';
-import 'package:book_app/app/ui/modules/search/search_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
         child: Scaffold(
-      appBar: AppBarBook(),
+      appBar: const AppBarBook(),
       body: Center(
-        child: Text('My Page'),
+        child: Text(Messages.of(context).myPage),
       ),
     ));
   }

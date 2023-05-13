@@ -1,4 +1,5 @@
 import 'package:book_app/app/core/constants/local_storage_constants.dart';
+import 'package:book_app/app/core/multilanguage/messages.dart';
 import 'package:book_app/app/core/validation/custom_validation.dart';
 import 'package:book_app/app/domain/entities/book_item.dart';
 import 'package:flutter/material.dart';
@@ -28,13 +29,13 @@ class _FavoriteOfflinePageState extends State<FavoriteOfflinePage> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: const Text('Favorite Books'),
+        title: Text(Messages.of(context).favoriteBooks),
       ),
       body: ValueListenableBuilder(
         valueListenable: bookItemsBox.listenable(),
         builder: (context, Box<BookItem> box, _) {
           if (box.values.isEmpty) {
-            return const Center(child: Text('No books saved.'));
+            return Center(child: Text(Messages.of(context).noBooksSaved));
           }
           return ListView.builder(
             itemCount: box.values.length,
@@ -73,7 +74,7 @@ class _FavoriteOfflinePageState extends State<FavoriteOfflinePage> {
                             Text(
                               book.saleInfo != null &&
                                       book.saleInfo!.retailPrice != null
-                                  ? "Price: ${book.saleInfo!.retailPrice!.amount!}"
+                                  ? "${Messages.of(context).price}: ${CustomValidation.formatPrice(price: book.saleInfo!.retailPrice!.amount!)}"
                                   : "",
                               style: const TextStyle(fontSize: 14),
                             ),
@@ -93,7 +94,7 @@ class _FavoriteOfflinePageState extends State<FavoriteOfflinePage> {
                               onPressed: () =>
                                   CustomValidation.validateLaunchURL(
                                       url: book.saleInfo!.buyLink),
-                              child: const Text('Buy this book'),
+                              child: Text(Messages.of(context).buyThisBook),
                             )
                           : Container(),
                     ],

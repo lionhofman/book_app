@@ -1,3 +1,4 @@
+import 'package:book_app/app/core/multilanguage/messages.dart';
 import 'package:book_app/app/ui/app_routes.dart';
 import 'package:book_app/app/ui/modules/search/search_page.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ class AppBarBook extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text('Book App'),
+      title: Text(Messages.of(context).bookApp),
       backgroundColor: Colors.white,
       actions: <Widget>[
         const Expanded(

@@ -1,3 +1,4 @@
+import 'package:book_app/app/core/multilanguage/messages.dart';
 import 'package:book_app/app/core/validation/custom_validation.dart';
 import 'package:book_app/app/ui/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +21,10 @@ class SearchPage extends GetView<SearchController> {
               .style
               .copyWith(fontStyle: FontStyle.italic, color: Colors.black),
           controller: controller.typeAheadController,
-          decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.search),
-              hintText: 'Search',
-              border: OutlineInputBorder()),
+          decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.search),
+              hintText: Messages.of(context).search,
+              border: const OutlineInputBorder()),
         ),
         suggestionsCallback: (pattern) async {
           if (pattern.isEmpty) {
@@ -73,7 +74,7 @@ class SearchPage extends GetView<SearchController> {
                 child: ElevatedButton(
                   onPressed: () => CustomValidation.validateLaunchURL(
                       url: suggestion.saleInfo!.buyLink),
-                  child: const Text('Buy now'),
+                  child: Text(Messages.of(context).buyNow),
                 ),
               ));
         },
