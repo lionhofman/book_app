@@ -1,13 +1,12 @@
 import 'package:book_app/app/core/multilanguage/messages.dart';
 import 'package:book_app/app/core/validation/custom_validation.dart';
 import 'package:book_app/app/ui/app_routes.dart';
+import 'package:book_app/app/ui/modules/search/controller/search_handler_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 
-import 'controller/search_controller.dart';
-
-class SearchPage extends GetView<SearchController> {
+class SearchPage extends GetView<SearchManagerController> {
   const SearchPage({Key? key}) : super(key: key);
 
   @override

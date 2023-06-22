@@ -2,8 +2,8 @@ import 'package:book_app/app/data/datasources/book_remote_data_source.dart';
 import 'package:book_app/app/data/repositories/book_repository_impl.dart';
 import 'package:book_app/app/domain/repositories/book_repository.dart';
 import 'package:book_app/app/domain/usecases/search/get_autocomplete_list_use_case.dart';
-import 'package:book_app/app/ui/modules/search/controller/search_controller.dart';
-import 'package:dio/dio.dart';
+import 'package:book_app/app/ui/modules/search/controller/search_handler_controller.dart';
+
 import 'package:get/get.dart';
 
 class SearchBinding implements Bindings {
@@ -15,8 +15,8 @@ class SearchBinding implements Bindings {
         ));
     Get.lazyPut<GetAutocompleteListUseCase>(
         () => GetAutocompleteListUseCase(Get.find<BookRepository>()));
-    Get.put<SearchController>(
-      SearchController(
+    Get.put<SearchManagerController>(
+      SearchManagerController(
         Get.find<GetAutocompleteListUseCase>(),
       ),
     );
