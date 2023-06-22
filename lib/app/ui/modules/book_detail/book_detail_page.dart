@@ -4,7 +4,6 @@ import 'package:book_app/app/data/database/hive/hive_db_service.dart';
 import 'package:book_app/app/domain/entities/book_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class BookDetailPage extends StatefulWidget {
   const BookDetailPage({

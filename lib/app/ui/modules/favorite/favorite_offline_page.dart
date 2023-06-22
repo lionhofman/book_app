@@ -2,7 +2,9 @@ import 'package:book_app/app/core/constants/local_storage_constants.dart';
 import 'package:book_app/app/core/multilanguage/messages.dart';
 import 'package:book_app/app/core/validation/custom_validation.dart';
 import 'package:book_app/app/domain/entities/book_item.dart';
+import 'package:book_app/app/ui/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class FavoriteOfflinePage extends StatefulWidget {
@@ -41,63 +43,69 @@ class _FavoriteOfflinePageState extends State<FavoriteOfflinePage> {
             itemCount: box.values.length,
             itemBuilder: (context, index) {
               BookItem book = box.getAt(index)!;
-              return Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+              return InkWell(
+                onTap: () => Get.toNamed(
+                  AppRoutes.BOOK_DETAIL_PAGE,
+                  arguments: book,
                 ),
-                elevation: 4.0,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      book.volumeInfo!.imageLinks != null
-                          ? Image.network(
-                              book.volumeInfo!.imageLinks!.smallThumbnail!,
-                              fit: BoxFit.cover,
-                              width: 50,
-                              height: 80,
-                            )
-                          : const SizedBox(
-                              width: 50,
-                              height: 80,
-                              child: Icon(Icons.image_not_supported),
-                            ),
-                      const SizedBox(width: 8.0),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              book.volumeInfo!.title!,
-                              style: const TextStyle(fontSize: 16),
-                            ),
-                            Text(
-                              book.saleInfo != null &&
-                                      book.saleInfo!.retailPrice != null
-                                  ? "${Messages.of(context).price}: ${CustomValidation.formatPrice(price: book.saleInfo!.retailPrice!.amount!)}"
-                                  : "",
-                              style: const TextStyle(fontSize: 14),
-                            ),
-                          ],
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  elevation: 4.0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        book.volumeInfo!.imageLinks != null
+                            ? Image.network(
+                                book.volumeInfo!.imageLinks!.smallThumbnail!,
+                                fit: BoxFit.cover,
+                                width: 50,
+                                height: 80,
+                              )
+                            : const SizedBox(
+                                width: 50,
+                                height: 80,
+                                child: Icon(Icons.image_not_supported),
+                              ),
+                        const SizedBox(width: 8.0),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                book.volumeInfo!.title!,
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                              Text(
+                                book.saleInfo != null &&
+                                        book.saleInfo!.retailPrice != null
+                                    ? "${Messages.of(context).price}: ${CustomValidation.formatPrice(price: book.saleInfo!.retailPrice!.amount!)}"
+                                    : "",
+                                style: const TextStyle(fontSize: 14),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.favorite, color: Colors.red),
-                        onPressed: () {
-                          setState(() {
-                            box.deleteAt(index);
-                          });
-                        },
-                      ),
-                      book.saleInfo != null && book.saleInfo!.buyLink != null
-                          ? ElevatedButton(
-                              onPressed: () =>
-                                  CustomValidation.validateLaunchURL(
-                                      url: book.saleInfo!.buyLink),
-                              child: Text(Messages.of(context).buyThisBook),
-                            )
-                          : Container(),
-                    ],
+                        IconButton(
+                          icon: const Icon(Icons.favorite, color: Colors.red),
+                          onPressed: () {
+                            setState(() {
+                              box.deleteAt(index);
+                            });
+                          },
+                        ),
+                        book.saleInfo != null && book.saleInfo!.buyLink != null
+                            ? ElevatedButton(
+                                onPressed: () =>
+                                    CustomValidation.validateLaunchURL(
+                                        url: book.saleInfo!.buyLink),
+                                child: Text(Messages.of(context).buyThisBook),
+                              )
+                            : Container(),
+                      ],
+                    ),
                   ),
                 ),
               );
