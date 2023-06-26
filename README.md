@@ -8,3 +8,9 @@ This is a Flutter book app that utilizes the Google Books API (https://www.googl
 3. Book Details: Users can tap on a book to view detailed information such as synopsis, publication date, and page count.
 4. Favorites: Users can mark books as favorites to access them easily later. The app stores the data of favorited books locally, allowing access even when offline.
 5. Purchase Redirection: When available, the app provides a link that redirects users to the book's purchase page, enabling them to buy directly from the vendor.
+
+
+### Video:
+
+https://github.com/lionhofman/book_app/assets/1455631/17acf2c5-6cfc-42e7-8968-714cc52d560e
+
